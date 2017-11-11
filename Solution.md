@@ -11,24 +11,23 @@ Dễ dàng nhận thấy rằng số thao tác cần thực hiện là cố đ�
 **Độ phức tạp : O(N)**
 
 ## C. Cách chọn binh đoàn hùng mạnh (nhất)
-Khi nhìn đến việc cần tìm đoạn con có giá trị lớn nhất, ta nghĩ ngay đến việc lưu tổng dồn. Ta sẽ lưu 2 mảng tổng dồn riêng lẻ như sau :
+Khi nhìn đến việc cần tìm đoạn con có giá trị lớn nhất, ta nghĩ ngay đến việc lưu tổng dồn. Ta sẽ lưu 2 mảng tổng dồn riêng với vị trí i như sau :
 
 + `su[i][0] = ... + a[i-1] - a[i];`
 + `su[i][1] = ... - a[i-1] + a[i];`
 
-Như thế, khi chạy vòng lặp đến i, ta luôn lưu lại mảng tổng dồn bé nhất trước đấy cho hai trường hợp i lẻ và i chẵn tương ứng là mi[1] và mi[0]. Từ đấy, kết quả sẽ được cập nhật bằng su[i][0]-mi[i%2] và su[i][1]-mi[1-i%2].
+Như thế, khi chạy vòng lặp đến i, ta luôn lưu lại mảng tổng dồn bé nhất trước đấy cho hai trường hợp i lẻ và i chẵn tương ứng là mi[1] và mi[0]. Từ đấy, kết quả sẽ được cập nhật bằng `su[i][0]-mi[i%2]` và `su[i][1]-mi[1-i%2]`.
 
 **Độ phức tạp : O(N)**
 
 ## D. Cách chọn tàu vũ trụ đẹp (nhất)
 t1<t2<t3<t4 và công thức toán `a[t1]+a[t2]*(a[t3]^a[t4])` và các số đều dương, cho ta nhận thấy vấn đề rằng có thể cố định t2, và đáp án sẽ được cập nhật bằng giá trị `a[t1]` lớn nhất đằng trước t2 và giá trị `a[t3]^a[t4]` lớn nhất nằm sau t2. Ta có thể chuẩn bị trước với mỗi t2 giá trị `a[t1]` lớn nhất trong O(N) và giá trị `a[t3]^a[t4]` lớn nhất trong O(N^2).
-
 **Độ phức tạp : O(N^2)**
 
 ## E. Cách diệt gián nhanh
-Do các số đều là số nguyên tố nên ta sẽ xét tất cả các tập con các số trong N số đã cho, và đếm xem có bao nhiêu số là bội của tích đấy mà nhỏ hơn M. Đáp án sẽ được cộng thêm nếu tập có lẻ phần tử, và sẽ được trừ đi nến tập con có chẵn phần tử. Việc này có thể được quản lý bằng việc for bitmask.
+Do các số đều là số nguyên tố nên ta sẽ xét tất cả các tập con các số trong N số đã cho, và đếm xem có bao nhiêu số là bội của tích đấy mà nhỏ hơn M. Đáp án sẽ được cộng thêm nếu tập có lẻ phần tử, và sẽ được trừ đi nến tập con có chẵn phần tử. Việc này có thể được quản lý bằng việc for bitmask hoặc backtrack tập con.
 
-**Độ phức tạp : O(2^N*N)**
+**Độ phức tạp : O(2^N*N) (O(2^N) nếu backtrack)**
 
 ## F. Bài toán thế kỉ
 Ta sẽ sắp xếp lại các số theo thứ tự. Số x sẽ đứng trước số y nếu như khi ghép x lên trước y thì sẽ tạo ra được số lớn hơn là khi ghép y trước x. VD : 9 sẽ được sắp trước 92 vì 992 lớn hơn 929.
@@ -52,7 +51,7 @@ Ta sẽ đọc hết tất cả các số có thể đọc được vào, trong 
 **Độ phức tạp : O(N)**
 
 ## H. Trò chơi hàng năm
-Đầu tiên, rõ rằng dãy hoán vị hoàn toàn có thể được sắp xếp lại, do vậy không bao giờ có trường hợp phải in ra -1. Ngoài ra, khi thực hiện bất kì thao tác nào thì chỉ có hai số bị đổi chỗ cho nhau. Gọi vị trí của số thứ i trong hoán vị nhận được là pos[i]. Ta có nhận xét rằng khi sử dụng thao tác 2 để đổi chỗ hai số i và j, pos[i] và pos[j] không thay đổi tính chẵn lẻ. Do vậy, nếu chỉ sử dụng thao tác 2 thì sẽ có một vài trường hợp không thể đổi được (VD : Khi pos[1]=2). Với nhận xét này, ta dễ dàng thấy rằng kết quả chính là một nửa số giá trị i mà `pos[i] % 2 != i % 2`.
+Đầu tiên, rõ rằng dãy hoán vị hoàn toàn có thể được sắp xếp lại bằng cách chỉ dùng thao tác 1, do vậy không bao giờ có trường hợp phải in ra -1. Ngoài ra, khi thực hiện bất kì thao tác nào thì chỉ có hai số bị đổi chỗ cho nhau. Gọi vị trí của số thứ i trong hoán vị nhận được là pos[i]. Ta có nhận xét rằng khi sử dụng thao tác 2 để đổi chỗ hai số i và j, pos[i] và pos[j] không thay đổi tính chẵn lẻ. Do vậy, nếu chỉ sử dụng thao tác 2 thì sẽ có một vài trường hợp không thể đổi được (VD : Khi pos[1]=2). Với nhận xét này, ta dễ dàng thấy rằng kết quả chính là một nửa số giá trị i mà `pos[i] % 2 != i % 2`.
 
 **Độ phức tạp : O(N)**
 
@@ -68,7 +67,7 @@ Xét dãy hàng rào độ dài i. Nếu ta muốn đưa thêm thanh hàng rào 
 
 ## K. Chia bom IPTD-949
 Ta sẽ cần kiểm tra xem có tồn tại mảng x[] sao cho
-+ `x[1] \* a[1] + x[2] \* a[2] + ... + x[N] \* a[N] == M;`
++ `x[1] * a[1] + x[2] * a[2] + ... + x[N] * a[N] == M;`
 + `x[1] > x[2] > x[3] > ... > x[N] > 0;`
 
 Nhận thấy rằng nếu cho 1 quả bom vào mỗi khoang của tàu i thì tất cả các tàu từ 1 đến i-1 đều phải được thêm ít nhất 1 quả bom vào mỗi khoang. Vì vậy, đây là bài toán Knapsack mà ở đây các đồ vật có giá trị là mảng tổng dồn thay vì mảng a[]. Gọi tổng các số trong khoảng từ 1 đến i là su[i]. dp[i][j] sẽ được cập nhật bởi dp[i][j-su[i]] và dp[i-1][j-su[i]], khởi tạo riêng cho dp[0][0] .
@@ -77,12 +76,6 @@ Nhận thấy rằng nếu cho 1 quả bom vào mỗi khoang của tàu i thì t
 
 ## L. Điểm tập kết
 Dễ nhận thấy rằng tọa độ x và y có thể được xử lý riêng biệt. Bây giờ bài toán được chuyển về thành trên một dãy số. Ta thấy rằng vị trí tập kết là trung vị của dãy số sau khi được sắp xếp.
-Chứng minh : Giả sử X là vị trí tập kết cần tìm trên dãy số và i là giá trị i lớn nhất sao cho a[i] <= X.
-Ta có nhận xét đầu tiên là luôn tìm được điểm Y mà Y=a[i] sao cho tổng khoảng cách đến Y nhỏ hơn hoặc bằng tổng khoảng cách đến X. Điều này có thể dễ chứng minh bằng việc dịch X về a[i] hoặc a[i+1].
-```
-X * i - su[i] + (su[N] - su[i]) - X * (N-i)
-= su[N] - su[i] * 2  
-```
 
 **Độ phức tạp : O(N \* logN)**
 
