@@ -5,7 +5,7 @@ using namespace std;
 
 int su[100007][2];
 int a[100007];
-int mi[2][2];
+int mi[2];
 
 signed main()
 {
@@ -21,16 +21,15 @@ signed main()
 		su[i][0]=su[i-1][1]-a[i];
 	}
 	int ans=-oo;
-	mi[0][0]=0,mi[0][1]=oo;
-	mi[1][0]=oo,mi[1][1]=oo;
+	mi[0]=0;
+	mi[1]=oo;
 	for(int i=1;i<=n;i++)
 	{
-		ans=max(ans,su[i][1]-mi[1-i%2][0]);
+		ans=max(ans,su[i][1]-mi[1-i%2]);
 		// cout << ans << endl;
-		ans=max(ans,su[i][0]-mi[i%2][0]);
+		ans=max(ans,su[i][0]-mi[i%2]);
 		// cout << ans << endl;
-		mi[i%2][0]=min(mi[i%2][0],su[i][0]);
-		mi[i%2][1]=min(mi[i%2][1],su[i][1]);
+		mi[i%2]=min(mi[i%2],su[i][0]);
 	}
 	cout << ans << endl;
 	return 0;
