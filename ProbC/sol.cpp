@@ -1,8 +1,3 @@
-/*huypheu
-3
-1 2 3
-*/
-
 #include <bits/stdc++.h>
 #define int long long
 #define oo (LLONG_MAX/2)

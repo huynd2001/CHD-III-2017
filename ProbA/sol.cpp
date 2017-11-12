@@ -1,15 +1,9 @@
-/*huypheu
-001
-*/
-
 #include<bits/stdc++.h>
 using namespace std;
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
+
 string s;
 long long n,i,dem,ans,MOD=1e9+7;
+
 int main()
 {
 	cin>>s;
@@ -22,4 +16,5 @@ int main()
 			dem++,dem%=MOD;
 	}
 	cout<<ans;
+	return 0;
 }

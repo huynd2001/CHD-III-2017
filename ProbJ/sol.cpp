@@ -1,7 +1,3 @@
-/*huypheu
-97
-*/
-
 #include <bits/stdc++.h>
 #define int long long
 #define mod 100000007

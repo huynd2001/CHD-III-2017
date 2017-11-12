@@ -1,7 +1,3 @@
-/*huypheu
-/
-*/
-// 2 4 6 8 10 12 14 3 9 15 5 
 #include <bits/stdc++.h>
 #define int long long
 using namespace std;
@@ -22,7 +18,7 @@ signed main()
 		for(int i=0;i<n;i++)
 		{
 			if(mask&(1<<i)) ans*=a[i],dem++;
-			if(ans>m) 
+			if(ans>m)
 			{
 				ok=0;
 				break;

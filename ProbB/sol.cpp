@@ -1,7 +1,3 @@
-/*huypheu
-LoveForest
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 

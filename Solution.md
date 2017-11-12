@@ -25,9 +25,9 @@ t1<t2<t3<t4 và công thức toán `a[t1]+a[t2]*(a[t3]^a[t4])` và các số đ�
 **Độ phức tạp : O(N^2)**
 
 ## E. Cách diệt gián nhanh
-Do các số đều là số nguyên tố nên ta sẽ xét tất cả các tập con các số trong N số đã cho, và đếm xem có bao nhiêu số là bội của tích đấy mà nhỏ hơn M. Đáp án sẽ được cộng thêm nếu tập có lẻ phần tử, và sẽ được trừ đi nến tập con có chẵn phần tử. Việc này có thể được quản lý bằng việc for bitmask hoặc backtrack tập con.
+Do các số đều là số nguyên tố nên ta sẽ xét tất cả các tập con các số trong N số đã cho, và đếm xem có bao nhiêu số là bội của tích đấy mà nhỏ hơn M. Đáp án sẽ được cộng thêm nếu tập có lẻ phần tử, và sẽ được trừ đi nến tập con có chẵn phần tử. Việc này có thể được quản lý bằng việc for bitmask hoặc backtrack tập con. Lưu ý rằng khi backtrack tập con, ta có thể đặt cận khi giá trị của tích các số đang quản lý lớn hơn M.
 
-**Độ phức tạp : O(2^N*N) (O(2^N) nếu backtrack)**
+**Độ phức tạp : O(2^N*N) nếu for bitmask hoặc (O(2^N) nếu backtrack)**
 
 ## F. Bài toán thế kỉ
 Ta sẽ sắp xếp lại các số theo thứ tự. Số x sẽ đứng trước số y nếu như khi ghép x lên trước y thì sẽ tạo ra được số lớn hơn là khi ghép y trước x. VD : 9 sẽ được sắp trước 92 vì 992 lớn hơn 929.
@@ -46,7 +46,7 @@ Như vậy, việc sắp xếp là hoàn tất. Ta chỉ cần in ra các số t
 **Độ phức tạp : O(N \* logN)**
 
 ## G. Đơn hàng lỗi
-Ta sẽ đọc hết tất cả các số có thể đọc được vào, trong quá trình đọc có thể thực hiện tính tổng luôn. Dễ thấy rằng giá trị cần phải trừ đi để ra đáp số đúng là số số đã đọc vào trừ đi 1.
+Ta sẽ đọc hết tất cả các số có thể đọc được vào, trong quá trình đọc có thể thực hiện tính tổng luôn. Dễ thấy rằng đáp số đúng là tổng tính được trừ đi số số đọc vào, cộng thêm 1.
 
 **Độ phức tạp : O(N)**
 
@@ -75,11 +75,11 @@ Nhận thấy rằng nếu cho 1 quả bom vào mỗi khoang của tàu i thì t
 **Độ phức tạp : O(N \* M)**
 
 ## L. Điểm tập kết
-Dễ nhận thấy rằng tọa độ x và y có thể được xử lý riêng biệt. Bây giờ bài toán được chuyển về thành trên một dãy số. Ta thấy rằng vị trí tập kết là trung vị của dãy số sau khi được sắp xếp.
+Dễ nhận thấy rằng tọa độ x và y có thể được xử lý riêng biệt. Bây giờ bài toán được chuyển về thành trên một dãy số. Ta thấy rằng vị trí tập kết tối ưu sẽ là trung vị của dãy số sau khi được sắp xếp.
 
 **Độ phức tạp : O(N \* logN)**
 
 ## M. Tuyển tập vũ khí chiến tranh
-Tại cột i, ta sẽ tính xem diện tích lớn nhất của một hình chữ nhật có cạnh trái ở cột i sẽ là bao nhiêu. Ở cột i, ta có thể tính được đoạn 1 dài nhất về phía bên phải ở mỗi hàng tính từ cột i là bao nhiêu bằng việc tính toán trong lúc chạy vòng lặp từ phải sang trái. Sau khi tính được các giá trị này cho mỗi hàng, gọi là r[j], ta thấy rằng có thể tính với mọi giá trị có thể của r[j] thì số hàng nhiều nhất mà hình chữ nhật có X cột ở cột i có thể có là bao nhiêu, hay chính là số hàng mà giá trị r[j] lớn hớn X. May thay, giá trị này không vượt quá M nên ta có thể chạy vòng lặp để đếm và cập nhật vào kết quả.
+Tại cột i, ta sẽ tính xem diện tích lớn nhất của một hình chữ nhật có cạnh trái ở cột i sẽ là bao nhiêu. Ở cột i, ta có thể tính được đoạn 1 dài nhất về phía bên phải ở mỗi hàng tính từ cột i là bao nhiêu bằng việc tính toán trong lúc chạy vòng lặp từ phải sang trái. Sau khi tính được các giá trị này cho mỗi hàng, gọi là r[j], ta thấy rằng có thể tính với mọi giá trị có thể của r[j] thì số hàng nhiều nhất mà hình chữ nhật có X cột ở cột i có thể có là bao nhiêu, hay chính là số hàng mà giá trị r[j] lớn hớn X. May thay, giá trị này không vượt quá M nên ta có thể chạy vòng lặp để đếm và cập nhật vào kết quả là tích của X với số hàng có r[j] >= X.
 
 **Độ phức tạp : O(M \* (M + N))**

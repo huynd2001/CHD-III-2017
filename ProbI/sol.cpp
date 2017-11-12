@@ -1,8 +1,3 @@
-/*huypheu
-3
-2 1 1
-*/
-
 #include <bits/stdc++.h>
 #define int long long
 using namespace std;

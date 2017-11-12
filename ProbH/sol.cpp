@@ -1,8 +1,3 @@
-/*huypheu
-4
-2 4 3 1
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
